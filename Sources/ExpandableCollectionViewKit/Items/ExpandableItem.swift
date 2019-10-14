@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Base class for the expandable items. Don't use this class to fill in the expandable table view, since it's not inended to be used in that way.
 public class ExpandableItem: Hashable {
     
     // MARK: - Properties
