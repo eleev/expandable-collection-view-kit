@@ -16,6 +16,7 @@ final public class Folder: ExpandableItem {
     public private(set) var subitems: [ExpandableItem] = []
         
     public private(set) var isItemsCountVisible: Bool = false
+    public var isChevronVisible: Bool = true
     public var isExpanded: Bool = false
     
     public var isGroup: Bool {
@@ -92,6 +93,12 @@ final public class Folder: ExpandableItem {
         let items = build().items
         incrementIndentLevel(for: items)
         subitems += items
+        return self
+    }
+    
+    @discardableResult
+    public func isChevronVisible(_ isChevronVisible: Bool) -> Self {
+        self.isChevronVisible = isChevronVisible
         return self
     }
 }

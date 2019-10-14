@@ -152,6 +152,7 @@ private extension ExpandableCollectionViewManager {
                     cell.subitems = folder.subitems.count
                     cell.isGroup = folder.isGroup
                     cell.isExpanded = folder.isExpanded
+                    cell.isChevronVisible = folder.isChevronVisible
                     cell.shouldDisplayItemsCount = folder.isItemsCountVisible
                     
                     try? folder.imageName.tryUnwrap { cell.itemImageName = $0 }

@@ -22,6 +22,12 @@ final class ExpandableItemCell: UICollectionViewCell, ReuseIdentifiable {
     let chevronImageView = UIImageView()
     let typeImage = UIImageView()
     var subitems: Int = 0
+    
+    var isChevronVisible: Bool = true {
+        didSet {
+            chevronImageView.isHidden = !isChevronVisible
+        }
+    }
       
     var shouldDisplayItemsCount: Bool = false {
         didSet {
