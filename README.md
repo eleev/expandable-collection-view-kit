@@ -16,14 +16,32 @@
 🗂 Expandable, hierarchical, flexible, declarative UICollectionView with diffable data sources & SwiftUI-like tree items builder [Swift 5.1, iOS & iPadOS 13].
 
 # 📺 Demo
+Please wait while the `.gif` files are loading...
 
 |  |  |  |
 :-------------------------:|:-------------------------:|:-------------------------:
-![](assets/waterfall-iphone.gif) | ![](assets/gallery-iphone.gif) | ![](assets/showcasegallery-iphone.gif)
-![](assets/mosaic-iphone.gif) | ![](assets/groupgrid-iphone.gif) | ![](assets/mosaicbigredux-iphone.gif)
-![](assets/tilegrid-iphone.gif) | ![](assets/mosaicsmallredux-iphone.gif) | ![](assets/orthogonalmagnet-iphone.gif)
-![](assets/banergrid-iphone.gif) | ![](assets/portraitgrid-iphone.gif) | ![](assets/verticallycont-iphone.gif) 
-   
+![](01.gif) | ![](02.gif) | ![](03.gif)
+![](04.gif) | ![](05.gif) | ![](06.gif)
+![](07.gif) | |
+
+<p float="left">
+  <img src="01.gif" width="485" />
+  <img src="02.gif" width="485" /> 
+</p>
+<p float="left">
+  <img src="03.gif" width="485" />
+  <img src="04.gif" width="485" /> 
+</p>
+
+<p align="center">
+    <img src="05.gif" width="990" />
+    <img src="06.gif" width="990" />
+</p>
+
+<p align="center">
+    <img src="07.gif" alt="Drawing"/>
+</p>
+
 
 # 🍱 Features
 - **Ease of use**
@@ -43,7 +61,22 @@
 
 ## Instantiation
 
+### Basic
+Create a property that will hold the  `ExpandableCollectionViewManager` reference and the instantiate it via one of the designated initializers:
+
+```swift
+let expVCManager = ExpandableCollectionViewManager(parentViewController: self)
+```
+Here `self` is the reference to the `UIViewController`  where the property is used. 
+
+### Pre-filling
+
+
 ## Configuration
+
+### Adding More Items
+
+### 
 
 ## Item Modifiers
 
@@ -56,6 +89,12 @@
 # 🏗 Installation
 
 ## Swift Package Manager
+
+To install the component, in `Xcode` select `File` ➡ `Swift Packages` ➡ `Add Package Dependency`. Then insert the following `URL` to locate the repository:
+
+`https://github.com/jVirus/expandable-collection-view-kit`
+
+After specifying which version do you want to install, the package will be downloaded and atttached to your project. 
 
 ## Manual 
 You can always use copy-paste the sources method 😄. Or you can compile the framework and include it with your project.
