@@ -59,7 +59,7 @@ final public class ExpandableCollectionViewManager: NSObject {
         self.parentViewController = parentViewController
         super.init()
 
-        menuItems(builder: builder)
+        appendItems(builder: builder)
         configure()
     }
       
@@ -69,7 +69,7 @@ final public class ExpandableCollectionViewManager: NSObject {
         super.init()
         
         let items = ExpandableItems(items:  [builder()])
-        menuItems(builder: { items } )
+        appendItems(builder: { items } )
         configure()
     }
     
@@ -82,7 +82,7 @@ final public class ExpandableCollectionViewManager: NSObject {
     
     // MARK: - Methods
     
-    public func menuItems(@ExpandableItemBuilder builder: () -> ExpandableItems) {
+    public func appendItems(@ExpandableItemBuilder builder: () -> ExpandableItems) {
         menuItems += builder().items
 
         // No need to store the publisher since it's a one time future + sink chain
@@ -216,24 +216,31 @@ extension ExpandableCollectionViewManager: UICollectionViewDelegate {
         guard let menuItem = dataSource.itemIdentifier(for: indexPath) else { return }
         collectionView.deselectItem(at: indexPath, animated: true)
         
-        if let folder = menuItem as? Folder, folder.isGroup {
-            folder.isExpanded.toggle()
+        if let folder = menuItem as? Folder {
+            folder.action?(indexPath, folder.title, !folder.isExpanded)
             
-            diselectedIndexPath = folder.isExpanded ? indexPath : nil
-            
-            if let cell = collectionView.cellForItem(at: indexPath) as? ExpandableItemCell {
-                cell.isExpanded = folder.isExpanded
+            if folder.isGroup {
+                folder.isExpanded.toggle()
                 
-                updateDataSource()
+                diselectedIndexPath = folder.isExpanded ? indexPath : nil
+                
+                if let cell = collectionView.cellForItem(at: indexPath) as? ExpandableItemCell {
+                    cell.isExpanded = folder.isExpanded
+                    
+                    updateDataSource()
+                }
             }
-        } else if let item = menuItem as? Item,
-            let viewControllerType = item.viewControllerType,
-            let onCellTapHandler = self.onCellTapHandler {
-            // Instantiate and apply optional configuration closure to the destination view controller
-            let destinationViewController = viewControllerType.init()
-            item.configuration?(destinationViewController)
+        } else if let item = menuItem as? Item {
+            item.action?(indexPath, item.title)
             
-            onCellTapHandler(destinationViewController)
+            if let viewControllerType = item.viewControllerType,
+                let onCellTapHandler = self.onCellTapHandler {
+                // Instantiate and apply optional configuration closure to the destination view controller
+                let destinationViewController = viewControllerType.init()
+                item.configuration?(destinationViewController)
+                
+                onCellTapHandler(destinationViewController)
+            }
         }
     }
 }
