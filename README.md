@@ -70,15 +70,77 @@ let expVCManager = ExpandableCollectionViewManager(parentViewController: self)
 Here `self` is the reference to the `UIViewController`  where the property is used. 
 
 ### Pre-filling
+To prefill the collection view, you may use the trailing closure syntax for one of the designated initializers:
 
+```swift
+let expVCManager = ExpandableCollectionViewManager(parentViewController: self) {
+    Folder(title: "ToDo") {
+        Item(title: "Compose Email")
+            .setImage(systemName: "paperplane")
+        Item(title: "Watch Netflix")
+    }
+
+    Item(title: "Buy new iPhone")
+    Item(title: "Cleanup")
+}
+```
 
 ## Configuration
 
 ### Adding More Items
+You can add more items by using `appendItems` method:
 
-### 
+```swift
+expVCManager.appendItems {
+    Folder(title: "Marvel") {
+        Item(title: "Spider-Man")
+        Item(title: "Iron Man")
+        Item(title: "Black Widow")
+    }
+    Folder(title: "DC") {
+        Item(title: "Batman")
+        Item(title: "Batgirl")
+        Item(title: "Nightwing")
+    }
+}
+```
 
 ## Item Modifiers
+
+There are a number of item modifiers that can be applied to them to change their behavior or appearence:
+
+```swift
+expVCManager.appendItems {
+    Folder(title: "Marvel") {
+        Item(title: "Spider-Man")
+            .setImage(systemName: "tray.full.fill") // 1
+            
+        Item(title: "Iron Man")
+        Item(title: "Black Widow")
+    }
+    .setTintColor(.systemOrange) // 2
+    .isExpanded(true) // 3
+    .isItemsCountVisible(true) // 4
+
+    Folder(title: "DC") {
+        Item(title: "Batman")
+        Item(title: "Batgirl")
+        Item(title: "Nightwing")
+    }
+    .isChevronVisible(false) // 5
+}
+```
+
+Let's break down the API's line by line:
+
+1. Changes the default **image icon** for either `Item` and/or `Folder`
+2. Changes **tint color** of a `Folder`'s icon
+3. Determines whether a `Folder` is automatically **expanded** 
+4. Displays a `Folder`'s **item counter** label that 
+5. Changes the visibility of **cehvron icon**
+
+### Actions
+
 
 ## Animator
 
