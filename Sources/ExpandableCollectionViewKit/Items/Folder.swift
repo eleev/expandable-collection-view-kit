@@ -11,6 +11,10 @@ import class UIKit.UIColor
 
 final public class Folder: ExpandableItem {
     
+    // MARK: - Typealiases
+
+    public typealias Action = (_ indexPath: IndexPath, _ title: String, _ isExpanded: Bool) -> Void
+
     // MARK: - Properties
     
     public private(set) var subitems: [ExpandableItem] = []
@@ -22,6 +26,8 @@ final public class Folder: ExpandableItem {
     public var isGroup: Bool {
         return subitems.count > 0
     }
+
+    public private(set) var action: Action?
     
     private let defaultImageName = "rectangle.stack.fill"
     private let defaultTintColor = UIColor.systemGray2
@@ -30,10 +36,12 @@ final public class Folder: ExpandableItem {
     
     public init(title: String,
                 isExpanded: Bool = false,
-                isItemsCountVisible: Bool = false) {
+                isItemsCountVisible: Bool = false,
+                action: Action? = nil) {
         super.init(title: title)
         self.isExpanded = isExpanded
         self.isItemsCountVisible = isItemsCountVisible
+        self.action = action
         
         configureDefaults()
     }
@@ -41,10 +49,12 @@ final public class Folder: ExpandableItem {
     public init(title: String,
                 isExpanded: Bool = false,
                 isItemsCountVisible: Bool = false,
+                action: Action? = nil,
                 @ExpandableItemBuilder subitems: () -> ExpandableItems) {
         super.init(title: title)
         self.isExpanded = isExpanded
         self.isItemsCountVisible = isItemsCountVisible
+        self.action = action
         
         configureDefaults()
         
@@ -56,10 +66,12 @@ final public class Folder: ExpandableItem {
     public init(title: String,
                 isExpanded: Bool = false,
                 isItemsCountVisible: Bool = false,
+                action: Action? = nil,
                 @ExpandableItemBuilder subitems: () -> ExpandableItem) {
         super.init(title: title)
         self.isExpanded = isExpanded
         self.isItemsCountVisible = isItemsCountVisible
+        self.action = action
         
         configureDefaults()
         
@@ -99,6 +111,12 @@ final public class Folder: ExpandableItem {
     @discardableResult
     public func isChevronVisible(_ isChevronVisible: Bool) -> Self {
         self.isChevronVisible = isChevronVisible
+        return self
+    }
+    
+    @discardableResult
+    public func setAction(_ action: @escaping Action) -> Self {
+        self.action = action
         return self
     }
 }
