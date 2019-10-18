@@ -87,8 +87,9 @@ final class ExpandableItemCell: UICollectionViewCell, ReuseIdentifiable {
     }
     
     fileprivate var indentContraint: NSLayoutConstraint! = nil
-    fileprivate let inset = CGFloat(10)
-    fileprivate lazy var imageInset = CGFloat(25)
+    fileprivate let inset = CGFloat(12)
+    fileprivate lazy var imageInset = CGFloat(24)
+    fileprivate lazy var utilityInset = CGFloat(16)
     
     // MARK: - Initializers
     
@@ -147,14 +148,14 @@ extension ExpandableItemCell {
             label.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
             label.topAnchor.constraint(equalTo: containerView.topAnchor),
             
-            subitemsLabel.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: inset),
-            subitemsLabel.trailingAnchor.constraint(equalTo: chevronImageView.leadingAnchor, constant: -inset),
+            subitemsLabel.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: utilityInset),
+            subitemsLabel.trailingAnchor.constraint(equalTo: chevronImageView.leadingAnchor, constant: -utilityInset),
             subitemsLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
             subitemsLabel.topAnchor.constraint(equalTo: containerView.topAnchor),
             
-            chevronImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -inset),
-            chevronImageView.heightAnchor.constraint(equalToConstant: imageInset),
-            chevronImageView.widthAnchor.constraint(equalToConstant: imageInset),
+            chevronImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -utilityInset),
+            chevronImageView.heightAnchor.constraint(equalToConstant: utilityInset),
+            chevronImageView.widthAnchor.constraint(equalToConstant: utilityInset),
             chevronImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
             ])
     }
