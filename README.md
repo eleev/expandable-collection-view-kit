@@ -25,7 +25,10 @@ Please wait while the `.gif` files are loading...
 <img src="https://user-images.githubusercontent.com/5098753/67145499-b1912980-f28a-11e9-812a-24d403357613.gif" width="210" /> 
 <img src="https://user-images.githubusercontent.com/5098753/67145500-b1912980-f28a-11e9-84f3-8711ac811d5d.gif" width="420" />
 <img src="https://user-images.githubusercontent.com/5098753/67145501-b1912980-f28a-11e9-9741-e98f108b8631.gif" width="420" />
-<img src="https://user-images.githubusercontent.com/5098753/67145502-b1912980-f28a-11e9-8b80-e3fa5907c9f2.gif" width="420"/>
+</p>
+
+<p float="center">
+<img src="https://user-images.githubusercontent.com/5098753/67145502-b1912980-f28a-11e9-8b80-e3fa5907c9f2.gif" width="880" />
 </p>
 
 # 🍱 Features
