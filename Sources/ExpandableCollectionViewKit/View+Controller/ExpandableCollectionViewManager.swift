@@ -15,8 +15,8 @@ final public class ExpandableCollectionViewManager: NSObject {
     
     public enum UnfoldAnimationType {
         case simple
-        /// Custom animation that can be constructed manually of by using the `AnimationFactory` type
-        case custom(Animation)
+        /// Custom animation that can be constructed manually (by using `ExpandableItem.Animation` typealias) or by using the `AnimationFactory` type
+        case custom(ExpandableItem.Animation)
     }
     
     // MARK: - Properties
@@ -264,7 +264,7 @@ extension ExpandableCollectionViewManager: UICollectionViewDelegate {
 
 // MARK: - Cell Animation Extension
 private extension ExpandableCollectionViewManager {
-    func animateUnfoldIfNeeded(cell: UICollectionViewCell, for indexPath: IndexPath, with animation: @escaping Animation) {
+    func animateUnfoldIfNeeded(cell: UICollectionViewCell, for indexPath: IndexPath, with animation: @escaping ExpandableItem.Animation) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             

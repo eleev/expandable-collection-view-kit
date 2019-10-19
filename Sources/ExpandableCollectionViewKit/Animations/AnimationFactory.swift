@@ -19,7 +19,7 @@ public enum AnimationFactory {
     
     // MARK: - Public Animations
     
-    public static func verticalUnfold(duration: TimeInterval, delayFactor: Double = 0, direction: VDirection = .up) -> Animation {
+    public static func verticalUnfold(duration: TimeInterval, delayFactor: Double = 0, direction: VDirection = .up) -> ExpandableItem.Animation {
         return { cell, indexPath, collectionView, completion in
             
             cell.layer.zPosition = CGFloat(UInt8.max - UInt8(indexPath.row))
@@ -49,7 +49,7 @@ public enum AnimationFactory {
         }
     }
     
-    public static func makeFadeAnimation(duration: TimeInterval, delayFactor: Double = 0) -> Animation {
+    public static func makeFadeAnimation(duration: TimeInterval, delayFactor: Double = 0) -> ExpandableItem.Animation {
         return { cell, indexPath, _, _ in
             cell.alpha = 0
 
@@ -62,7 +62,7 @@ public enum AnimationFactory {
         }
     }
     
-    public static func revealBehindEachOther(duration: TimeInterval, delayFactor: Double = 0) -> Animation {
+    public static func revealBehindEachOther(duration: TimeInterval, delayFactor: Double = 0) -> ExpandableItem.Animation {
         return { cell, indexPath, viewController, _ in
             cell.layer.zPosition = CGFloat(UInt8.max - UInt8(indexPath.row))
             cell.transform = CGAffineTransform(translationX: 0, y: -(cell.bounds.height / 1.5))
@@ -81,7 +81,7 @@ public enum AnimationFactory {
         }
     }
     
-    public static func moveDownWithBounce(duration: TimeInterval, delayFactor: Double = 0) -> Animation {
+    public static func moveDownWithBounce(duration: TimeInterval, delayFactor: Double = 0) -> ExpandableItem.Animation {
         return { cell, indexPath, _, _ in
             cell.layer.zPosition = CGFloat(UInt8.max - UInt8(indexPath.row))
             cell.transform = CGAffineTransform(translationX: 0, y: -(cell.bounds.height / 1.5))
@@ -101,7 +101,7 @@ public enum AnimationFactory {
         }
     }
     
-    public static func moveDown(duration: TimeInterval, delayFactor: Double = 0) -> Animation {
+    public static func moveDown(duration: TimeInterval, delayFactor: Double = 0) -> ExpandableItem.Animation {
         return { cell, indexPath, _, _ in
             cell.transform = CGAffineTransform(translationX: 0, y: -(cell.bounds.height / 1.5))
 
@@ -117,7 +117,7 @@ public enum AnimationFactory {
     
     // MARK: - Experimental animations
     
-    static func verticalFold(duration: TimeInterval, delayFactor: Double = 0, direction: VDirection) -> Animation {
+    static func verticalFold(duration: TimeInterval, delayFactor: Double = 0, direction: VDirection) -> ExpandableItem.Animation {
            return { cell, indexPath, collectionView, completion in
                cell.layer.zPosition = CGFloat(indexPath.row)
 
@@ -146,7 +146,7 @@ public enum AnimationFactory {
            }
        }
     
-    static func slideIn(duration: TimeInterval, delayFactor: Double = 0) -> Animation {
+    static func slideIn(duration: TimeInterval, delayFactor: Double = 0) -> ExpandableItem.Animation {
         return { cell, indexPath, collectionView, _ in
             cell.transform = CGAffineTransform(translationX: collectionView.bounds.width, y: 0)
 
@@ -160,7 +160,7 @@ public enum AnimationFactory {
         }
     }
     
-    static func slideOut(duration: TimeInterval, delayFactor: Double = 0) -> Animation {
+    static func slideOut(duration: TimeInterval, delayFactor: Double = 0) -> ExpandableItem.Animation {
            return { cell, indexPath, collectionView, _ in
                UIView.animate(
                    withDuration: duration,

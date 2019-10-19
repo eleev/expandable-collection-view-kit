@@ -8,18 +8,16 @@
 
 import UIKit
 
-public typealias Animation = (UICollectionViewCell, IndexPath, UICollectionView, ((Bool) -> Void)?) -> Void
-
 final class Animator {
     
     // MARK: - Properties
     
     private var hasAnimatedAllCells = false
-    private let animation: Animation
+    private let animation: ExpandableItem.Animation
 
     // MARK: - Initializers
     
-    init(animation: @escaping Animation) {
+    init(animation: @escaping ExpandableItem.Animation) {
         self.animation = animation
     }
 

@@ -11,6 +11,15 @@ import UIKit
 /// Base class for the expandable items. Don't use this class to fill in the expandable table view, since it's not inended to be used in that way.
 public class ExpandableItem: Hashable {
     
+    // MARK: - Typealiases
+    
+    /// Animation typealias that specifies the required closure signature for a valid animation for `ExpandableCollectionViewKit` framework.
+    /// - Parameter cell: is a `UICollectionViewCell` instance that will be the main subject of animation
+    /// - Parameter indexPath: is an `IndexPath` instance
+    /// - Parameter collectionView: is the `UICollectionView` instance that represents the current collection view
+    /// - Parameter completion: is an optional completion closure that is specified by the following signature: `((Bool) -> Void)?`
+    public typealias Animation = (_ cell: UICollectionViewCell, _ indexPath: IndexPath, _ collectionView: UICollectionView, _ completion: ((Bool) -> Void)?) -> Void
+    
     // MARK: - Properties
     
     public weak var parent: ExpandableItem? = nil
