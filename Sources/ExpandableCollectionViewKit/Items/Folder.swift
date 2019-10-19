@@ -23,6 +23,8 @@ final public class Folder: ExpandableItem {
     public var isChevronVisible: Bool = true
     public var isExpanded: Bool = false
     
+    public var chevronAnimationDuration: TimeInterval = 0.3
+    
     public var isGroup: Bool {
         return subitems.count > 0
     }
@@ -111,6 +113,12 @@ final public class Folder: ExpandableItem {
     @discardableResult
     public func isChevronVisible(_ isChevronVisible: Bool) -> Self {
         self.isChevronVisible = isChevronVisible
+        return self
+    }
+    
+    @discardableResult
+    public func setChevronAnimationDuration(_ chevronAnimationDuration: TimeInterval) -> Self {
+        self.chevronAnimationDuration = chevronAnimationDuration
         return self
     }
     
