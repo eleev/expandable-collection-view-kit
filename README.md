@@ -6,7 +6,7 @@
 [![SPM](https://img.shields.io/badge/SPM-Supported-red.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)]()
 
-**Last Update: 13/October/2019.**
+**Last Update: 19/October/2019.**
 
 ![](cover-expandable-view.png)
 
@@ -18,24 +18,16 @@
 # 📺 Demo
 Please wait while the `.gif` files are loading...
 
-|  |  |  |
-:-------------------------:|:-------------------------:|:-------------------------:
-![](01.gif) | ![](02.gif) | ![](03.gif)
-![](04.gif) | ![](05.gif) | ![](06.gif)
-![](07.gif) | |
-
-<p float="left">
-  <img src="01.gif" width="485" />
-  <img src="02.gif" width="485" /> 
-</p>
-<p float="left">
-  <img src="03.gif" width="485" />
-  <img src="04.gif" width="485" /> 
+<p float="center">
+  <img src="https://user-images.githubusercontent.com/5098753/67145497-b0f89300-f28a-11e9-8530-5e1178764437.gif" width="249" />
+  <img src="https://user-images.githubusercontent.com/5098753/67145498-b0f89300-f28a-11e9-9fd5-38250090ba1f.gif" width="249" /> 
+    <img src="https://user-images.githubusercontent.com/5098753/67145539-046ae100-f28b-11e9-9de4-481ae82e0d39.gif" width="249" />
+  <img src="https://user-images.githubusercontent.com/5098753/67145499-b1912980-f28a-11e9-812a-24d403357613.gif" width="249" /> 
 </p>
 
 <p align="center">
-    <img src="05.gif" width="990" />
-    <img src="06.gif" width="990" />
+    <img src="05.gif" width="800" />
+    <img src="06.gif" width="800" />
 </p>
 
 <p align="center">
