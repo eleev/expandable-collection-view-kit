@@ -41,7 +41,7 @@ final public class ExpandableCollectionViewManager: NSObject {
         }
     }
     public var sectionContentInsets: NSDirectionalEdgeInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 10)
-    public var onCellTapHandler: ((UIViewController) -> Void)? = nil
+    public var onCellTapHandler: ((IndexPath, UIViewController) -> Void)? = nil
     
     public var unfoldAnimation: UnfoldAnimationType = .simple
     
@@ -112,6 +112,7 @@ final public class ExpandableCollectionViewManager: NSObject {
     }
 }
 
+// MARK: - Collection View Configuration Extension
 private extension ExpandableCollectionViewManager {
     
     func updateDataSource(animatingDifferences isAnimated: Bool = true, completion: @escaping () -> Void = { }) {
@@ -134,34 +135,26 @@ private extension ExpandableCollectionViewManager {
     
     func configureDataSource() {
         self.dataSource = UICollectionViewDiffableDataSource
-            <Section, ExpandableItem>(collectionView: collectionView) {
+            <Section, ExpandableItem>(collectionView: collectionView) { [unowned self]
                 (collectionView: UICollectionView, indexPath: IndexPath, menuItem: ExpandableItem) -> UICollectionViewCell? in
                 guard let cell = collectionView.dequeueReusableCell(
                     withReuseIdentifier: ExpandableItemCell.reuseIdentifier,
                     for: indexPath) as? ExpandableItemCell else { fatalError("Could not create new cell") }
                 
-                cell.configureTypeImageView()
-                cell.configureChevronImageView()
-                
-                cell.label.text = menuItem.title
-                cell.indentLevel = menuItem.indentLevel
-                cell.itemTintColor = menuItem.tintColor
+                self.configure(cell, item: menuItem)
                 
                 switch menuItem {
                 case let folder as Folder:
-                    cell.subitems = folder.subitems.count
-                    cell.isGroup = folder.isGroup
-                    cell.isExpanded = folder.isExpanded
-                    cell.isChevronVisible = folder.isChevronVisible
-                    cell.shouldDisplayItemsCount = folder.isItemsCountVisible
-                    
+                    self.configure(cell, folder: folder)
                     try? folder.imageName.tryUnwrap { cell.itemImageName = $0 }
                 case menuItem as Item:
                     try? menuItem.imageName.tryUnwrap { cell.itemImageName = $0 }
                     
                     cell.subitemsLabel.text = nil
                     cell.isGroup = false
-                default: ()
+                default:
+                    // Unsupported case. If you implement a new type of Expandable Item, them make sure to add configuration method in the corresponding extension
+                    ()
                 }
               
                 if case .custom(let animation) = self.unfoldAnimation {
@@ -205,12 +198,36 @@ private extension ExpandableCollectionViewManager {
     }
 }
 
+// MARK: - Cell Configruation Extension
+private extension ExpandableCollectionViewManager {
+    func configure(_ cell: ExpandableItemCell, item: ExpandableItem) {
+        cell.configureTypeImageView()
+        cell.configureChevronImageView()
+        
+        cell.label.text = item.title
+        cell.indentLevel = item.indentLevel
+        cell.itemTintColor = item.tintColor
+    }
+    
+    func configure(_ cell: ExpandableItemCell, folder: Folder) {
+        cell.subitems = folder.subitems.count
+        cell.isGroup = folder.isGroup
+        cell.isExpanded = folder.isExpanded
+        cell.shouldDisplayItemsCount = folder.isItemsCountVisible
+        
+        cell.isChevronVisible = folder.isChevronVisible
+        cell.chevronAnimationDuration = folder.chevronAnimationDuration
+    }
+}
+
+// MARK: - Scroll View Override
 extension ExpandableCollectionViewManager {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         diselectedIndexPath = nil
     }
 }
  
+// MARK: - Collection View Delegate Conformance
 extension ExpandableCollectionViewManager: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let menuItem = dataSource.itemIdentifier(for: indexPath) else { return }
@@ -239,12 +256,13 @@ extension ExpandableCollectionViewManager: UICollectionViewDelegate {
                 let destinationViewController = viewControllerType.init()
                 item.configuration?(destinationViewController)
                 
-                onCellTapHandler(destinationViewController)
+                onCellTapHandler(indexPath, destinationViewController)
             }
         }
     }
 }
 
+// MARK: - Cell Animation Extension
 private extension ExpandableCollectionViewManager {
     func animateUnfoldIfNeeded(cell: UICollectionViewCell, for indexPath: IndexPath, with animation: @escaping Animation) {
         DispatchQueue.main.async { [weak self] in
