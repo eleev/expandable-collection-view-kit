@@ -6,7 +6,7 @@
 [![SPM](https://img.shields.io/badge/SPM-Supported-red.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)]()
 
-**Last Update: 21/October/2019.**
+**Last Update: 20/October/2019.**
 
 ![](cover-expandable-view.png)
 
@@ -197,15 +197,25 @@ Here we specified the target view controller type that needs to be transitioned 
 
 ## Swift Package Manager
 
-To install the component, in `Xcode` select `File` ➡ `Swift Packages` ➡ `Add Package Dependency`. Then insert the following `URL` to locate the repository:
+### Xcode 11+
 
-`https://github.com/jVirus/expandable-collection-view-kit`
+1. Open `MenuBar` → `File` → `Swift Packages` → `Add Package Dependency...`
+2. Paste the package repository url `https://github.com/jVirus/expandable-collection-view-kit` and hit `Next`.
+3. Select the installment rules.
 
 After specifying which version do you want to install, the package will be downloaded and attached to your project. 
 
+### Package.swift
+If you already have a `Package.swift` or you are building your own package simply add a new dependency:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/jVirus/expandable-collection-view-kit", from: "1.0.0")
+]
+```
+
 ## Manual 
 You can always use copy-paste the sources method 😄. Or you can compile the framework and include it with your project.
-
 
 # 🙋‍♀️🙋‍♂️ Contributing
 Your contributions are always appreciated. There are many ways how you help with the project:
