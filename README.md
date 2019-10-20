@@ -6,7 +6,7 @@
 [![SPM](https://img.shields.io/badge/SPM-Supported-red.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)]()
 
-**Last Update: 19/October/2019.**
+**Last Update: 21/October/2019.**
 
 ![](cover-expandable-view.png)
 
@@ -26,10 +26,6 @@ Please wait while the `.gif` files are loading...
 
 <img src="https://user-images.githubusercontent.com/5098753/67145500-b1912980-f28a-11e9-84f3-8711ac811d5d.gif" width="425" />
 <img src="https://user-images.githubusercontent.com/5098753/67145501-b1912980-f28a-11e9-9741-e98f108b8631.gif" width="425" />
-</p>
-
-<p float="center">
-<img src="https://user-images.githubusercontent.com/5098753/67145502-b1912980-f28a-11e9-8b80-e3fa5907c9f2.gif" width="860" />
 </p>
 
 # 🍱 Features
