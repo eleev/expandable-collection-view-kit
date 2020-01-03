@@ -1,12 +1,13 @@
 # expandable-collection-view-kit [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
 
-[![Platform](https://img.shields.io/badge/platform-iOS_13-yellow.svg)]()
-[![Platform](https://img.shields.io/badge/platform-iPadOS_13-darkyellow.svg)]()
-[![Language](https://img.shields.io/badge/language-Swift_5.1-orange.svg)]()
+[![Build](https://github.com/jvirus/expandable-collection-view-kit/workflows/Build/badge.svg)]()
+[![Platform](https://img.shields.io/badge/Platform-iOS_13-yellow.svg)]()
+[![Platform](https://img.shields.io/badge/Platform-iPadOS_13-darkyellow.svg)]()
+[![Language](https://img.shields.io/badge/Language-Swift_5.1-orange.svg)]()
 [![SPM](https://img.shields.io/badge/SPM-Supported-red.svg)]()
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)]()
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)]()
 
-**Last Update: 20/October/2019.**
+**Last Update: 03/January/2020.**
 
 ![](cover-expandable-view.png)
 
