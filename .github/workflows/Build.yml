@@ -1,0 +1,17 @@
+name: Build
+on: [push]
+jobs:
+  build:
+    runs-on: macOS-latest
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Switch to Xcode 11
+      run: sudo xcode-select --switch /Applications/Xcode_11.3.app
+    # Since we want to be running our tests from Xcode, we need to
+    # generate an .xcodeproj file.  Luckly, Swift Package Manager has
+    # build in functionality to do so.
+    - name: Generate xcodeproj
+      run: swift package generate-xcodeproj
+    - name: Run tests
+      run: xcodebuild test -destination 'name=iPhone 11' -scheme 'ExpandableCollectionViewKit-Package'
