@@ -25,5 +25,8 @@ let package = Package(
         .testTarget(
             name: "ExpandableCollectionViewKitTests",
             dependencies: ["ExpandableCollectionViewKit"]),
+    ],
+    swiftLanguageVersions: [
+        .v5
     ]
 )
