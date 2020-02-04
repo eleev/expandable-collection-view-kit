@@ -109,6 +109,20 @@ final public class Folder: ExpandableItem {
         subitems += items
         return self
     }
+
+    @discardableResult
+    public func addItems(_ items: ExpandableItem...) -> Self {
+        incrementIndentLevel(for: items)
+        subitems += items
+        return self
+    }
+    
+    @discardableResult
+    public func addItems(_ items: [ExpandableItem]) -> Self {
+        incrementIndentLevel(for: items)
+        subitems += items
+        return self
+    }
     
     @discardableResult
     public func isChevronVisible(_ isChevronVisible: Bool) -> Self {

@@ -50,7 +50,7 @@ final public class ExpandableCollectionViewManager: NSObject {
     public init(parentViewController: UIViewController) {
         self.parentViewController = parentViewController
         super.init()
-
+        
         configure()
     }
     
@@ -58,11 +58,11 @@ final public class ExpandableCollectionViewManager: NSObject {
                 @ExpandableItemBuilder builder: () -> ExpandableItems) {
         self.parentViewController = parentViewController
         super.init()
-
+        
         appendItems(builder: builder)
         configure()
     }
-      
+    
     public init(parentViewController: UIViewController,
                 @ExpandableItemBuilder builder: () -> ExpandableItem) {
         self.parentViewController = parentViewController
@@ -82,9 +82,36 @@ final public class ExpandableCollectionViewManager: NSObject {
     
     // MARK: - Methods
     
+    public func appendItems(_ items: ExpandableItem...) {
+        appendItems { () -> ExpandableItems in
+            ExpandableItems(items: items)
+        }
+    }
+    
+    public func appendItem(_ item: ExpandableItem) {
+        appendItems { () -> ExpandableItems in
+            ExpandableItems(items: [item])
+        }
+    }
+    
+    public func appendInFolder(named name: String, items: ExpandableItem...) {
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
+            let menuItems = self.menuItems
+            for menuItem in menuItems {
+                guard let folder = menuItem as? Folder, folder.title == name else { continue }
+                folder.addItems(items)
+                break
+            }
+            self.appendItems { () -> ExpandableItems in
+                ExpandableItems(items: menuItems)
+            }
+        }
+    }
+    
     public func appendItems(@ExpandableItemBuilder builder: () -> ExpandableItems) {
         menuItems += builder().items
-
+        
         // No need to store the publisher since it's a one time future + sink chain
         let _ = Future<Void, Never>() { promise in
             // Recursively traverse all the data source hierarchy and calculate the indent level for each subtree, which will make all the elements to have the corresponding leading anchor paddings
@@ -93,10 +120,10 @@ final public class ExpandableCollectionViewManager: NSObject {
                     zeroLevelItems.setIndentLevel(-1)
                     incrementIndentLevel(for: zeroLevelItems)
                 }
-
+                
                 func incrementIndentLevel(for item: ExpandableItem) {
                     item.setIndentLevel((item.parent?.indentLevel ?? -1) + 1)
-
+                    
                     guard let folder = item as? Folder else { return }
                     folder.subitems.forEach { item in
                         incrementIndentLevel(for: item)
@@ -156,7 +183,7 @@ private extension ExpandableCollectionViewManager {
                     // Unsupported case. If you implement a new type of Expandable Item, them make sure to add configuration method in the corresponding extension
                     ()
                 }
-              
+                
                 if case .custom(let animation) = self.unfoldAnimation {
                     self.animateUnfoldIfNeeded(cell: cell, for: indexPath, with: animation)
                 }
@@ -226,7 +253,7 @@ extension ExpandableCollectionViewManager {
         diselectedIndexPath = nil
     }
 }
- 
+
 // MARK: - Collection View Delegate Conformance
 extension ExpandableCollectionViewManager: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
