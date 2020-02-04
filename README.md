@@ -7,7 +7,7 @@
 [![SPM](https://img.shields.io/badge/SPM-Supported-red.svg)]()
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)]()
 
-**Last Update: 03/January/2020.**
+**Last Update: 04/February/2020.**
 
 ![](cover-expandable-view.png)
 
