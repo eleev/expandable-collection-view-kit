@@ -69,7 +69,7 @@ final public class ExpandableCollectionViewManager: NSObject {
         super.init()
         
         let items = ExpandableItems(items:  [builder()])
-        appendItems(builder: { items } )
+        appendItems(builder: { return items } )
         configure()
     }
     
@@ -83,15 +83,11 @@ final public class ExpandableCollectionViewManager: NSObject {
     // MARK: - Methods
     
     public func appendItems(_ items: ExpandableItem...) {
-        appendItems { () -> ExpandableItems in
-            ExpandableItems(items: items)
-        }
+        appendItems { return ExpandableItems(items: items) }
     }
     
     public func appendItem(_ item: ExpandableItem) {
-        appendItems { () -> ExpandableItems in
-            ExpandableItems(items: [item])
-        }
+        appendItems { return ExpandableItems(items: [item]) }
     }
     
     public func appendInFolder(named name: String, items: ExpandableItem...) {
@@ -103,9 +99,7 @@ final public class ExpandableCollectionViewManager: NSObject {
                 folder.addItems(items)
                 break
             }
-            self.appendItems { () -> ExpandableItems in
-                ExpandableItems(items: menuItems)
-            }
+            self.appendItems { return ExpandableItems(items: menuItems) }
         }
     }
     
