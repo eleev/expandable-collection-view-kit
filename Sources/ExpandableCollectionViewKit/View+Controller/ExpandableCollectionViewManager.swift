@@ -225,6 +225,8 @@ private extension ExpandableCollectionViewManager {
         cell.configureTypeImageView()
         cell.configureChevronImageView()
         
+        cell.label.adjustsFontSizeToFitWidth = true
+        cell.label.minimumScaleFactor = 0.2
         cell.label.text = item.title
         cell.indentLevel = item.indentLevel
         cell.itemTintColor = item.tintColor
