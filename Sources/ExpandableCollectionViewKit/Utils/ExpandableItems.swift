@@ -22,5 +22,9 @@ public struct ExpandableItemBuilder {
     public static func buildBlock(_ subitems: ExpandableItem...) -> ExpandableItems {
         .init(items: subitems)
     }
+    
+    public static func buildBlock(_ items: ExpandableItems) -> ExpandableItems {
+        items
+    }
 }
 
