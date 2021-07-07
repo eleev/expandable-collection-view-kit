@@ -12,7 +12,7 @@ public struct ExpandableItems {
     var items: [ExpandableItem] = []
 }
 
-@_functionBuilder
+@resultBuilder
 public struct ExpandableItemBuilder {
     
     public static func buildBlock(_ item: ExpandableItem) -> ExpandableItem {
