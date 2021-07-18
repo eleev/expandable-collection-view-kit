@@ -3,11 +3,11 @@
 [![Build](https://github.com/jvirus/expandable-collection-view-kit/workflows/Build/badge.svg)]()
 [![Platform](https://img.shields.io/badge/Platform-iOS_13-yellow.svg)]()
 [![Platform](https://img.shields.io/badge/Platform-iPadOS_13-darkyellow.svg)]()
-[![Language](https://img.shields.io/badge/Language-Swift_5.1-orange.svg)]()
+[![Language](https://img.shields.io/badge/Language-Swift_5.3-orange.svg)]()
 [![SPM](https://img.shields.io/badge/SPM-Supported-red.svg)]()
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)]()
 
-**Last Update: 04/February/2020.**
+**Last Update: 18/July/2021.**
 
 ![](cover-expandable-view.png)
 
